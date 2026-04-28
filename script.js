@@ -100,13 +100,8 @@ gsap.registerPlugin(ScrollTrigger);
     .to(breathQuoteLines[0], {
       opacity: 1, y: 0, filter: 'blur(0px)',
       ease: 'power3.out',
-      duration: 1.2,
+      duration: 1.4,
     }, 1.1)
-    .to(breathQuoteLines[1], {
-      opacity: 1, y: 0, filter: 'blur(0px)',
-      ease: 'power3.out',
-      duration: 1.2,
-    }, 1.6)
     .to(breathAttr, {
       opacity: 1, y: 0,
       ease: 'power2.out',
@@ -841,6 +836,17 @@ gsap.registerPlugin(ScrollTrigger);
   // ==========================================================
   const snapVeil = document.querySelector('.snap-veil');
   const sections = [hero, breath, rupture, scene, harvest, chapterIntro, wash, craft, powder, atelier, craftsman, oven, trust, finale].filter(Boolean);
+
+  // 每屏所属章节：0=壹深山采挖, 1=贰精细炮制, 2=叁百年手艺, 3=肆到你手中
+  // sections 顺序：hero(0)/breath(1)/rupture(2)/scene(3)/harvest(4)/ci(5)/wash(6)/craft(7)/powder(8)/atelier(9)/craftsman(10)/oven(11)/trust(12)/finale(13)
+  const sectionToChapter = [0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 3, 3];
+  const railMarks = document.querySelectorAll('.rail-mark');
+
+  function updateRail(idx) {
+    const chapterIdx = sectionToChapter[idx] ?? 0;
+    railMarks.forEach((m, i) => m.classList.toggle('is-active', i === chapterIdx));
+  }
+  updateRail(0);
   let lastIndex = 0;
   let scrollSettleTimer = null;
   let isPlayingVeil = false;
@@ -905,12 +911,14 @@ gsap.registerPlugin(ScrollTrigger);
     const currentIdx = getCurrentIndex();
     if (currentIdx !== lastIndex) {
       playVeil();
+      updateRail(currentIdx);
       lastIndex = currentIdx;
     }
   }, { passive: true });
 
   // 初始化 lastIndex
   lastIndex = getCurrentIndex();
+  updateRail(lastIndex);
 
   // ==========================================================
   //  Hero · 首屏字符 hover 微动
