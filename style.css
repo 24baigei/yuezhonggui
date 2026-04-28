@@ -1967,7 +1967,22 @@ a { text-decoration: none; color: inherit; }
   left: clamp(56px, 8vw, 120px);
   transform: translateY(-50%);
   z-index: 5;
-  max-width: 480px;
+  max-width: 620px;
+  width: 48%;
+}
+
+.harvest-card {
+  position: absolute;
+  top: 50%;
+  right: clamp(40px, 4vw, 72px);
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 320px;
+  background: rgba(20, 14, 10, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(200, 169, 107, 0.4);
+  opacity: 0;
 }
 
 .harvest-meta {
@@ -2084,20 +2099,6 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* 原料档案卡 */
-.harvest-card {
-  position: absolute;
-  top: 50%;
-  right: clamp(56px, 6vw, 100px);
-  transform: translateY(-50%);
-  z-index: 5;
-  width: 340px;
-  background: rgba(20, 14, 10, 0.72);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(200, 169, 107, 0.4);
-  opacity: 0;
-}
-
 .card-banner {
   padding: 14px 20px;
   border-bottom: 1px solid rgba(200, 169, 107, 0.4);
@@ -2580,16 +2581,46 @@ a { text-decoration: none; color: inherit; }
 .craft-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 100% 100% at center, transparent 30%, rgba(15, 10, 6, 0.55) 100%);
+  background:
+    linear-gradient(to bottom, rgba(15, 10, 6, 0.55) 0%, transparent 30%, transparent 70%, rgba(15, 10, 6, 0.5) 100%),
+    radial-gradient(ellipse 100% 100% at center, transparent 30%, rgba(15, 10, 6, 0.45) 100%);
   pointer-events: none;
 }
 
 .craft-header {
   position: absolute;
-  top: 14%;
+  top: 12%;
   left: 56px;
-  right: 56px;
   z-index: 5;
+  max-width: 720px;
+  padding: 28px 36px;
+  background: rgba(20, 14, 10, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(200, 169, 107, 0.22);
+  border-left: 2px solid var(--gold);
+}
+
+.craft-header::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  border-top: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+}
+
+.craft-header::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
 }
 
 .craft-meta {
@@ -2621,7 +2652,7 @@ a { text-decoration: none; color: inherit; }
 .craft-title {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(32px, 4.2vw, 48px);
+  font-size: clamp(38px, 5vw, 60px);
   line-height: 1.5;
   color: var(--bone-soft);
   letter-spacing: 0.1em;
@@ -2844,11 +2875,40 @@ a { text-decoration: none; color: inherit; }
 
 .powder-header {
   position: absolute;
-  top: 14%;
-  left: 56px;
-  right: 56px;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 5;
   text-align: center;
+  max-width: 760px;
+  padding: 24px 40px;
+  background: rgba(20, 14, 10, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(200, 169, 107, 0.22);
+  border-top: 2px solid var(--gold);
+}
+
+.powder-header::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  border-top: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+}
+
+.powder-header::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
 }
 
 .powder-meta {
@@ -2991,10 +3051,11 @@ a { text-decoration: none; color: inherit; }
 .atelier-content {
   position: absolute;
   top: 50%;
-  left: clamp(56px, 9vw, 140px);
+  left: clamp(56px, 7vw, 100px);
   transform: translateY(-50%);
   z-index: 5;
-  max-width: 600px;
+  max-width: 720px;
+  width: 56%;
 }
 
 .atelier-eyebrow {
@@ -3033,20 +3094,21 @@ a { text-decoration: none; color: inherit; }
 
 .atelier-name {
   font-family: var(--font-display);
-  font-size: clamp(28px, 3.4vw, 40px);
-  letter-spacing: 0.5em;
+  font-size: clamp(32px, 3.8vw, 48px);
+  letter-spacing: 0.35em;
   color: var(--bone-soft);
   font-weight: 400;
   margin-bottom: 36px;
-  padding-left: 0.5em;
+  padding-left: 0.35em;
+  white-space: nowrap;
   opacity: 0;
 }
 
 .atelier-quote {
   font-family: var(--font-display);
-  font-size: clamp(22px, 2.6vw, 32px);
-  line-height: 1.8;
-  letter-spacing: 0.15em;
+  font-size: clamp(24px, 2.8vw, 36px);
+  line-height: 1.7;
+  letter-spacing: 0.18em;
   color: var(--bone-soft);
   margin-bottom: 24px;
   opacity: 0;
@@ -3203,11 +3265,40 @@ a { text-decoration: none; color: inherit; }
 
 .craftsman-header {
   position: absolute;
-  top: 18%;
-  left: 56px;
-  right: 56px;
+  top: 14%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 5;
   text-align: center;
+  max-width: 820px;
+  padding: 26px 44px;
+  background: rgba(20, 14, 10, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(200, 169, 107, 0.22);
+  border-top: 2px solid var(--gold);
+}
+
+.craftsman-header::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 14px;
+  height: 14px;
+  border-top: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+}
+
+.craftsman-header::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 1px solid var(--gold);
+  border-left: 1px solid var(--gold);
 }
 
 .craftsman-title {

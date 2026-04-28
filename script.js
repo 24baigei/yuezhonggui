@@ -793,6 +793,13 @@ gsap.registerPlugin(ScrollTrigger);
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const handlers = sectionMap.get(entry.target);
+
+      // === rail 联动：哪屏中点最接近视口中心就高亮哪个章节 ===
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        const idx = sections.indexOf(entry.target);
+        if (idx >= 0) updateRail(idx);
+      }
+
       if (!handlers) return;
 
       // 进入视口超过 50% 时播放
@@ -816,6 +823,7 @@ gsap.registerPlugin(ScrollTrigger);
     threshold: [0, 0.5, 0.8, 1],
   });
 
+  if (hero) observer.observe(hero);
   observer.observe(breath);
   observer.observe(rupture);
   observer.observe(scene);
